@@ -1,0 +1,11 @@
+---
+- hosts: "{{ playbook_dir | basename }}"
+  become: yes
+  tasks:
+    - user: name=unpriviledged
+    - command: echo hi
+      become_user: unpriviledged
+      ignore_errors: yes
+    - apt: name=acl
+    - command: echo hi
+      become_user: unpriviledged
